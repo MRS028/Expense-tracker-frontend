@@ -46,28 +46,34 @@ export default function FilterBar({ onFilter, onReset }: Props) {
   };
 
   return (
-    <Card>
+    <Card className="border-slate-200 shadow-sm h-full">
       <CardHeader>
-        <CardTitle>Filter Transactions</CardTitle>
+        <CardTitle className="text-base font-semibold tracking-tight">
+          Filters
+        </CardTitle>
+        <p className="text-xs text-slate-500 mt-1">
+          Narrow down the transaction list.
+        </p>
       </CardHeader>
       <CardContent>
-        <form
-          onSubmit={handleSubmit}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
-        >
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label>Type</Label>
-            <Select value={type} onValueChange={(value) => setType(value ?? "")}>
+            <Select
+              value={type}
+              onValueChange={(value) => setType(value ?? "")}
+            >
               <SelectTrigger>
-                <SelectValue placeholder="All" />
+                <SelectValue placeholder="All types" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value=" ">All</SelectItem>
+                <SelectItem value=" ">All types</SelectItem>
                 <SelectItem value="income">Income</SelectItem>
                 <SelectItem value="expense">Expense</SelectItem>
               </SelectContent>
             </Select>
           </div>
+
           <div className="space-y-2">
             <Label>Category</Label>
             <Input
@@ -76,27 +82,43 @@ export default function FilterBar({ onFilter, onReset }: Props) {
               onChange={(e) => setCategory(e.target.value)}
             />
           </div>
-          <div className="space-y-2">
-            <Label>Min Amount</Label>
-            <Input
-              type="number"
-              step="0.01"
-              value={minAmount}
-              onChange={(e) => setMinAmount(e.target.value)}
-            />
+
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-2">
+              <Label>Min</Label>
+              <Input
+                type="number"
+                step="0.01"
+                placeholder="0"
+                value={minAmount}
+                onChange={(e) => setMinAmount(e.target.value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Max</Label>
+              <Input
+                type="number"
+                step="0.01"
+                placeholder="∞"
+                value={maxAmount}
+                onChange={(e) => setMaxAmount(e.target.value)}
+              />
+            </div>
           </div>
-          <div className="space-y-2">
-            <Label>Max Amount</Label>
-            <Input
-              type="number"
-              step="0.01"
-              value={maxAmount}
-              onChange={(e) => setMaxAmount(e.target.value)}
-            />
-          </div>
-          <div className="sm:col-span-2 lg:col-span-4 flex gap-2">
-            <Button type="submit">Apply Filters</Button>
-            <Button type="button" variant="outline" onClick={handleReset}>
+
+          <div className="flex gap-2 pt-1">
+            <Button
+              type="submit"
+              className="flex-1 bg-slate-900 hover:bg-slate-800"
+            >
+              Apply
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleReset}
+              className="flex-1"
+            >
               Reset
             </Button>
           </div>

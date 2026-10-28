@@ -5,9 +5,9 @@ import type {
   TransactionInput,
 } from "../types";
 
-const BASE_URL = "http://localhost:8000";
-const TOKEN_KEY = "expense_tracker_token";
-const USER_KEY = "expense_tracker_user";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const TOKEN_KEY = import.meta.env.VITE_TOKEN_KEY;
+const USER_KEY = import.meta.env.VITE_USER_KEY;
 
 // ============ TOKEN HELPERS ============
 

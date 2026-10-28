@@ -1,7 +1,7 @@
 import { getToken } from "./api";
 import type { User } from "../types";
 
-const USER_KEY = "expense_tracker_user";
+const USER_KEY = import.meta.env.VITE_USER_KEY;
 
 export function setUser(user: User): void {
   localStorage.setItem(USER_KEY, JSON.stringify(user));
